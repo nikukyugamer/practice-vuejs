@@ -1,6 +1,10 @@
 const app = new Vue({
   el: '#app',
   data: {
-    seen: true
+    todos: [
+      { text: 'Learn JavaScript'},
+      { text: 'Learn Vue,js' },
+      { text: 'Build something awesome' }
+    ]
   }
 })
