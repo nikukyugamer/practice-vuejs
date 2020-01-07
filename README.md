@@ -1,4 +1,6 @@
-# challenging-vue
+[![CircleCI](https://circleci.com/gh/corselia/challenging-vue.svg?style=svg)](https://circleci.com/gh/corselia/challenging-vue)
+
+# Challenging Vue.js
 
 ## Project setup
 ```
