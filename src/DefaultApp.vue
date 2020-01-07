@@ -1,16 +1,17 @@
 <template>
   <div id="app">
-    <LoveCat msg="Welcome to Your Vue.js App" />
+    <img alt="Vue logo" src="./assets/logo.png" />
+    <HelloWorld msg="Welcome to Your Vue.js App" />
   </div>
 </template>
 
 <script>
-import LoveCat from "./components/LoveCat.vue";
+import HelloWorld from "./components/HelloWorld.vue";
 
 export default {
   name: "app",
   components: {
-    LoveCat
+    HelloWorld
   }
 };
 </script>
