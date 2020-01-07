@@ -26,9 +26,9 @@ jobs:
           key: dependency-cache-{{ checksum "package-lock.json" }}
           paths:
             - ./node_modules
-      # - run:
-      #     name: Execute Jest
-      #     command: yarn test
+      - run:
+          name: Execute Jest
+          command: yarn test
       # - run:
       #     name: Code coverage
       #     command: './node_modules/.bin/nyc report --reporter=text-lcov'
