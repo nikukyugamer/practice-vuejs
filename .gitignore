@@ -20,3 +20,6 @@ yarn-error.log*
 *.njsproj
 *.sln
 *.sw?
+
+# 勉強中なので一時的に ignore する
+cjs_es6_import_export_require
