@@ -3,7 +3,7 @@
     "target": "es5",
     "module": "es2015",
     "lib": ["es2019", "dom", "dom.iterable"],
-    "allowJs": true,
+    "allowJs": false,
     "strict": true,
     "noImplicitAny": true,
     "esModuleInterop": true,
@@ -11,11 +11,11 @@
     "sourceMap": true,
     "outDir": "./dist",
 
-    // "strictNullChecks": true,              /* Enable strict null checks. */
-    // "strictFunctionTypes": true,           /* Enable strict checking of function types. */
-    // "strictBindCallApply": true,           /* Enable strict 'bind', 'call', and 'apply' methods on functions. */
-    // "strictPropertyInitialization": true,  /* Enable strict checking of property initialization in classes. */
-    // "noImplicitThis": true,                /* Raise error on 'this' expressions with an implied 'any' type. */
-    // "alwaysStrict": true,                  /* Parse in strict mode and emit "use strict" for each source file. */
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "strictBindCallApply": true,
+    "strictPropertyInitialization": true,
+    "noImplicitThis": true,
+    "alwaysStrict": true,
   }
 }
