@@ -10,6 +10,8 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^2.16.0",
+    "@typescript-eslint/parser": "^2.16.0",
     "css-loader": "^3.4.2",
     "jquery": "^3.4.1",
     "sass-loader": "^8.0.1",
