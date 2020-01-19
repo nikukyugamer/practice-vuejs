@@ -1,16 +1,14 @@
-// class Omikuji {
-//   constructor(array) {
-//     this.items = array;
-//   }
+class Omikuji {
+  items: Array<string>;
 
-//   get() {
-//     const rand = Math.floor(Math.random() * this.items.length);
-//     return this.items[rand];
-//   }
-// }
+  constructor(items: Array<string>) {
+    this.items = items;
+  }
 
-// module.exports = Omikuji;
-
-export default function(str1: string, str2: string) {
-  return str1 + str2;
+  get() {
+    const rand: number = Math.floor(Math.random() * this.items.length);
+    return this.items[rand];
+  }
 }
+
+module.exports = Omikuji;

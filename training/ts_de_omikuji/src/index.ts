@@ -1,14 +1,14 @@
-// const Omikuji = require('./omikuji');
-// const $ = require('jquery');
+const myOmikuji = require('./omikuji');
+const $ = require('jquery');
 
-// $(function() {
-//   $('#button').on('click', function() {
-//     alert('jQuery!');
-//   });
-// });
+const items: Array<string> = ['大吉', '中吉', '末吉', '吉', '凶'];
+const selectedOmikuji: Omikuji = new myOmikuji(items);
 
-// const items = ['大吉', '中吉', '末吉', '吉', '凶'];
-// const omikuji = new Omikuji(items);
+$(function() {
+  $('#button').on('click', function() {
+    const myOmikujiResult: string = selectedOmikuji.get();
 
-// console.log(omikuji.get());
-// console.log('Omikuji is done!!');
+    alert(myOmikujiResult);
+    console.log(`おみくじの結果は ${myOmikujiResult} です！`);
+  });
+});
