@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "core-js": ">=3.6.4",
-    "vue": ">=2.6.11"
+    "vue": ">=2.6.12"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": ">=4.5.4",
@@ -20,7 +20,7 @@
     "eslint": ">=7.7.0",
     "eslint-plugin-vue": ">=6.1.2",
     "jest": ">=26.4.1",
-    "vue-template-compiler": ">=2.6.11"
+    "vue-template-compiler": ">=2.6.12"
   },
   "eslintConfig": {
     "root": true,
