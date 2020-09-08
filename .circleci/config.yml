@@ -3,9 +3,17 @@ jobs:
   build:
     working_directory: ~/repo
     docker:
-      - image: circleci/node:14.7.0
+      - image: circleci/node:14.9.0
+      # https://github.com/cypress-io/cypress-docker-images
+      - image: cypress/base:12
+        environment:
+          TERM: xterm
     steps:
       - checkout
+      - run:
+          name: Install base packages (for Cypress)
+          command: |
+            sudo apt-get install -y libgtk2.0-0 libgtk-3-0 libgbm-dev libnotify-dev libgconf-2-4 libnss3 libxss1 libasound2 libxtst6 xauth xvfb
       - run:
           name: Update npm
           command: |
@@ -22,13 +30,22 @@ jobs:
       - run:
           name: yarn install
           command: yarn install
+      - run:
+          name: Install Cypress
+          command: npx cypress install
       - save_cache:
           key: dependency-cache-{{ checksum "yarn.lock" }}
           paths:
             - ./node_modules
+            # Cypress
+            - ~/.cache
       - run:
           name: Execute Jest
-          command: yarn test
+          command: yarn test:unit
+      - run:
+          # https://cli.vuejs.org/core-plugins/e2e-cypress.html
+          name: Execute Cypress
+          command: yarn test:e2e --headless
       # - run:
       #     name: Code coverage
       #     command: './node_modules/.bin/nyc report --reporter=text-lcov'
@@ -40,3 +57,7 @@ jobs:
           destination: coverage
       - store_test_results:
           path: test-results.xml
+      - store_artifacts:
+          path: cypress/videos
+      - store_artifacts:
+          path: cypress/screenshots
