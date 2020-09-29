@@ -3,7 +3,7 @@ on:
   push:
 jobs:
   continuous_integration:
-    name: lets_continuous_intergration
+    name: lets_continuous_integration
     runs-on: ubuntu-latest
     steps:
       - name: checkout
@@ -11,7 +11,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v1
         with:
-          node-version: '13.x'
+          node-version: '14.x'
           registry-url: 'https://registry.npmjs.org'
       - name: yarn install
         run: |
