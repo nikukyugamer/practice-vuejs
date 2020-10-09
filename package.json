@@ -39,7 +39,7 @@
     "eslint-plugin-vue": ">=7.0.1",
     "prettier": ">=1.19.1",
     "sass": ">=1.27.0",
-    "sass-loader": ">=8.0.2",
+    "sass-loader": ">=10.0.3",
     "typescript": ">=3.9.3",
     "vue-jest": ">=5.0.0-0"
   }
