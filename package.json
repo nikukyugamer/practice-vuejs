@@ -15,7 +15,7 @@
     "vue": ">=3.0.11",
     "vue-class-component": ">=8.0.0-beta.4",
     "vue-router": ">=4.0.8",
-    "vuex": ">=4.0.0"
+    "vuex": ">=4.0.1"
   },
   "devDependencies": {
     "@types/jest": ">=26.0.23",
