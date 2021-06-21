@@ -40,6 +40,16 @@
       >
     </noscript>
     <div id="app"></div>
+    <div id="gtm-draft-first" data-hoge="user_01">GTM Draft First</div>
+    <div id="gtm-draft-second" style="display: none">GTM Draft Second</div>
+    <div id="gtm-draft-third" data-hoge="female">GTM Draft Third</div>
+    <script>
+      dataLayer.push({
+        bookCategory: "fiction",
+        bookTitle: "The Scholar",
+        bookAuthor: "Gabriel García Márquez",
+      });
+    </script>
     <!-- built files will be auto injected -->
   </body>
 </html>
