@@ -3,7 +3,7 @@ jobs:
   build:
     working_directory: ~/repo
     docker:
-      - image: circleci/node:14.11
+      - image: circleci/node:14.17
       # https://github.com/cypress-io/cypress-docker-images
       - image: cypress/base:12
         environment:
@@ -31,18 +31,18 @@ jobs:
       - run:
           name: yarn install
           command: yarn install
-    #   - run:
-    #       name: Install Cypress
-    #       command: npx cypress install
+      #   - run:
+      #       name: Install Cypress
+      #       command: npx cypress install
       - save_cache:
           key: dependency-cache-{{ checksum "yarn.lock" }}
           paths:
             - ./node_modules
             # Cypress
             - ~/.cache
-    #   - run:
-    #       name: Execute Jest
-    #       command: yarn test:unit
+      #   - run:
+      #       name: Execute Jest
+      #       command: yarn test:unit
       - run:
           # https://cli.vuejs.org/core-plugins/e2e-cypress.html
           name: Execute Cypress
