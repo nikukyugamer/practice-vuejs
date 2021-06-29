@@ -5,7 +5,7 @@ jobs:
     docker:
       - image: circleci/node:14.17
       # https://github.com/cypress-io/cypress-docker-images
-      - image: cypress/base:12
+      - image: cypress/base:14
         environment:
           TERM: xterm
     steps:
