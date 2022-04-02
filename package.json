@@ -22,7 +22,7 @@
     "eslint": "7.32.0",
     "eslint-plugin-prettier": "4.0.0",
     "eslint-plugin-vue": "7.20.0",
-    "prettier": "2.6.1",
+    "prettier": "2.6.2",
     "register-service-worker": "1.7.2",
     "sass": "1.49.11",
     "sass-loader": "10.2.1",
