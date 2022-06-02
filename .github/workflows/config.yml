@@ -11,11 +11,11 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '14.17.x'
+          node-version: '18.2.0'
           registry-url: 'https://registry.npmjs.org'
       - name: yarn install
         run: |
-          yarn install
+          yarn install --ignore-engines
       # - name: test
       #   run: |
       #     yarn test
