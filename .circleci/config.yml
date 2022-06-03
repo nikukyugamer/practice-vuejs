@@ -3,7 +3,7 @@ jobs:
   build:
     working_directory: ~/repo
     docker:
-      - image: cimg/node:18.2.0
+      - image: cimg/node:16.15.0
       # https://github.com/cypress-io/cypress-docker-images
       - image: cypress/base:14
         environment:
@@ -45,8 +45,8 @@ jobs:
       #       command: yarn test:unit
       - run:
           # https://cli.vuejs.org/core-plugins/e2e-cypress.html
-          name: (PENDING) Execute Cypress
-          command: echo "(PENDING) $ yarn test:e2e --headless"
+          name: Execute Cypress
+          command: yarn test:e2e --headless
       # - run:
       #     name: Code coverage
       #     command: './node_modules/.bin/nyc report --reporter=text-lcov'
