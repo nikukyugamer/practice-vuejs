@@ -3,7 +3,7 @@ jobs:
   build:
     working_directory: ~/repo
     docker:
-      - image: circleci/node:16.13
+      - image: cimg/node:16.15.0
       # https://github.com/cypress-io/cypress-docker-images
       - image: cypress/base:14
         environment:
@@ -18,7 +18,7 @@ jobs:
       - run:
           name: Update npm
           command: |
-            sudo npm install -g npm@latest
+            npm install -g npm@latest
       - run:
           name: Update Yarn
           command: |
@@ -30,7 +30,7 @@ jobs:
           key: dependency-cache-{{ checksum "yarn.lock" }}
       - run:
           name: yarn install
-          command: yarn install
+          command: yarn install --ignore-engines
       #   - run:
       #       name: Install Cypress
       #       command: npx cypress install
