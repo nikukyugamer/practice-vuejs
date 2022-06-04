@@ -40,9 +40,9 @@ jobs:
             - ./node_modules
             # Cypress
             - ~/.cache
-      #   - run:
-      #       name: Execute Jest
-      #       command: yarn test:unit
+      - run:
+          name: Execute Jest (Unit test)
+          command: yarn test:unit
       - run:
           # https://cli.vuejs.org/core-plugins/e2e-cypress.html
           name: Execute Cypress
