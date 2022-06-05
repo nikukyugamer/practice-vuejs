@@ -33,6 +33,16 @@ describe("HelloWorld.vue", () => {
       expect(wrapper.text()).toContain("Hello, myComputed()!");
     });
   });
+
+  describe("mounted() のテスト", () => {
+    it("yamaha の値が AG03 になっていること", () => {
+      const wrapper = shallowMount(HelloWorld, {
+        props: { msg: "Foobar" },
+      });
+
+      expect(wrapper.vm.yamaha).toBe("AG03");
+    });
+  });
 });
 
 // DONE:
@@ -43,7 +53,7 @@ describe("HelloWorld.vue", () => {
 // レシーバ要素が存在しない場合、getはエラー、findはnullを返す
 
 // TODO:
-// mounted()のテスト
+// mounted()のテスト axiosをmountedで走らせる場合ってどう書くの？
 // methods のテスト
 // store の mutations actions などのテスト
 // axios のモック化 -> yarn add --dev flush-promises が必要らしい
