@@ -131,20 +131,35 @@
         >
       </li>
     </ul>
+    <span id="my-computed" v-if="isShownMyComputed">{{ myComputed }}</span>
+    <span>YAMAHA: {{ yamaha }}</span>
   </div>
 </template>
 
-<script lang="ts">
-import { Options, Vue } from "vue-class-component";
-
-@Options({
-  props: {
-    msg: String,
+<script>
+export default {
+  name: "HelloWorld",
+  mounted() {
+    this.yamaha = "AG03";
   },
-})
-export default class HelloWorld extends Vue {
-  msg!: string;
-}
+  props: {
+    msg: {
+      type: String,
+      required: true,
+    },
+  },
+  data() {
+    return {
+      yamaha: "",
+      isShownMyComputed: false,
+    };
+  },
+  computed: {
+    myComputed() {
+      return "Hello, myComputed()!";
+    },
+  },
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
