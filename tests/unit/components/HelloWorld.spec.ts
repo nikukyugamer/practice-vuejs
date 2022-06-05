@@ -51,9 +51,9 @@ describe("HelloWorld.vue", () => {
 // 表示のテスト
 // getメソッドとfindメソッド
 // レシーバ要素が存在しない場合、getはエラー、findはnullを返す
+// mounted()のテスト axiosをmountedで走らせる場合ってどう書くの？
+// axios のモック化 -> yarn add --dev flush-promises が必要らしい
 
 // TODO:
-// mounted()のテスト axiosをmountedで走らせる場合ってどう書くの？
 // methods のテスト
 // store の mutations actions などのテスト
-// axios のモック化 -> yarn add --dev flush-promises が必要らしい
