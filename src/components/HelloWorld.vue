@@ -132,13 +132,16 @@
       </li>
     </ul>
     <span id="my-computed" v-if="isShownMyComputed">{{ myComputed }}</span>
-    {{ isShownMyComputed }}
+    <span>YAMAHA: {{ yamaha }}</span>
   </div>
 </template>
 
 <script>
 export default {
   name: "HelloWorld",
+  mounted() {
+    this.yamaha = "AG03";
+  },
   props: {
     msg: {
       type: String,
@@ -147,6 +150,7 @@ export default {
   },
   data() {
     return {
+      yamaha: "",
       isShownMyComputed: false,
     };
   },
