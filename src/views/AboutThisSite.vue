@@ -15,6 +15,15 @@
       <h2>{{ user.name }}</h2>
       <p>{{ user.email }}</p>
     </div>
+
+    <div class="button">
+      <button data-testid="sample-message-button" @click="toggleSampleMessage">
+        toggleSampleMessage
+      </button>
+    </div>
+    <div data-testid="sample-message">
+      {{ sampleMessage }}
+    </div>
   </div>
 </template>
 
@@ -28,10 +37,18 @@ export default {
   },
   data() {
     return {
+      sampleMessage: "",
       users: [],
     };
   },
   methods: {
+    toggleSampleMessage() {
+      if (this.sampleMessage === "") {
+        this.sampleMessage = "Hello, AboutThisSiteWorld!";
+      } else {
+        this.sampleMessage = "";
+      }
+    },
     fetchUsers() {
       axios
         .get("https://jsonplaceholder.typicode.com/users")

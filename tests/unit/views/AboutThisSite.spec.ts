@@ -1,5 +1,4 @@
 import { shallowMount } from "@vue/test-utils";
-import flushPromises from "flush-promises";
 import AboutThisSite from "@/views/AboutThisSite.vue";
 
 jest.mock("axios", () => ({
@@ -35,14 +34,19 @@ jest.mock("axios", () => ({
 }));
 
 describe("AboutThisSite.vue", () => {
-  it("mounted() で axios の結果が期待どおりであること", async () => {
+  it("mounted() で axios の結果が期待どおりであること", (done) => {
     const wrapper = shallowMount(AboutThisSite);
 
-    await flushPromises();
-
     expect(wrapper.text()).toMatch("This is an about page");
-    expect(wrapper.text()).toMatch("Leanne Graham");
-    expect(wrapper.text()).toMatch("Sincere@april.biz");
+
+    // $nextTick だとエラーになる
+    // https://zenn.dev/fuku710/articles/2b0b66a3283f7e
+    setTimeout(() => {
+      expect(wrapper.text()).toMatch("Leanne Graham");
+      expect(wrapper.text()).toMatch("Sincere@april.biz");
+
+      done();
+    });
   });
 
   it("2つのボタンをクリックしたときに期待通りの動作をすること", async () => {
@@ -59,6 +63,15 @@ describe("AboutThisSite.vue", () => {
 
     await wrapper.get("#fetch-user-button").trigger("click");
     expect(wrapper.text()).toMatch("Sincere@april.biz");
-    console.log(wrapper.text());
+  });
+
+  it("'toggleSampleMessage' ボタンをクリックしたときに期待通りの動作をすること", (done) => {
+    const wrapper = shallowMount(AboutThisSite);
+    wrapper.get("[data-testid=sample-message-button]").trigger("click");
+
+    wrapper.vm.$nextTick(() => {
+      expect(wrapper.text()).toMatch("Hello, AboutThisSiteWorld!");
+      done();
+    });
   });
 });
