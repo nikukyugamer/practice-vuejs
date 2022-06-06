@@ -3,6 +3,7 @@ import AboutThisSite from "@/views/AboutThisSite.vue";
 
 jest.mock("axios", () => ({
   get: jest.fn(() =>
+    // Promise.reject({})
     Promise.resolve({
       data: [
         {
@@ -38,12 +39,14 @@ describe("AboutThisSite.vue", () => {
     const wrapper = shallowMount(AboutThisSite);
 
     expect(wrapper.text()).toMatch("This is an about page");
+    expect(wrapper.text()).not.toMatch("データの受信に失敗しました。");
 
     // $nextTick だとエラーになる
     // https://zenn.dev/fuku710/articles/2b0b66a3283f7e
     setTimeout(() => {
       expect(wrapper.text()).toMatch("Leanne Graham");
       expect(wrapper.text()).toMatch("Sincere@april.biz");
+      expect(wrapper.text()).not.toMatch("データの受信に失敗しました。");
 
       done();
     });
@@ -53,16 +56,20 @@ describe("AboutThisSite.vue", () => {
     const wrapper = shallowMount(AboutThisSite);
 
     expect(wrapper.text()).toMatch("This is an about page");
+    expect(wrapper.text()).not.toMatch("データの受信に失敗しました。");
     expect(wrapper.text()).not.toMatch("Sincere@april.biz");
 
     await wrapper.get("#fetch-user-button").trigger("click");
     expect(wrapper.text()).toMatch("Sincere@april.biz");
+    expect(wrapper.text()).not.toMatch("データの受信に失敗しました。");
 
     await wrapper.get("#remove-user-button").trigger("click");
     expect(wrapper.text()).not.toMatch("Sincere@april.biz");
+    expect(wrapper.text()).not.toMatch("データの受信に失敗しました。");
 
     await wrapper.get("#fetch-user-button").trigger("click");
     expect(wrapper.text()).toMatch("Sincere@april.biz");
+    expect(wrapper.text()).not.toMatch("データの受信に失敗しました。");
   });
 
   it("'toggleSampleMessage' ボタンをクリックしたときに期待通りの動作をすること", (done) => {
