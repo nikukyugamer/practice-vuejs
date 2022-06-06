@@ -11,9 +11,13 @@
       </button>
     </p>
 
-    <div v-for="user in users" v-bind:key="user.id">
-      <h2>{{ user.name }}</h2>
-      <p>{{ user.email }}</p>
+    <div>
+      <span>{{ fetchUsersErrorMessage }}</span>
+
+      <div v-for="user in users" v-bind:key="user.id">
+        <h2>{{ user.name }}</h2>
+        <p>{{ user.email }}</p>
+      </div>
     </div>
 
     <div class="button">
@@ -21,6 +25,7 @@
         toggleSampleMessage
       </button>
     </div>
+
     <div data-testid="sample-message">
       {{ sampleMessage }}
     </div>
@@ -39,6 +44,7 @@ export default {
     return {
       sampleMessage: "",
       users: [],
+      fetchUsersErrorMessage: "",
     };
   },
   methods: {
@@ -54,6 +60,9 @@ export default {
         .get("https://jsonplaceholder.typicode.com/users")
         .then((response) => {
           this.users = response.data;
+        })
+        .catch(() => {
+          this.fetchUsersErrorMessage = "データの受信に失敗しました。";
         });
     },
     removeUsers() {
