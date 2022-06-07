@@ -3,7 +3,7 @@ jobs:
   build:
     working_directory: ~/repo
     docker:
-      - image: cimg/node:16.15.0
+      - image: cimg/node:16.15.1
       # https://github.com/cypress-io/cypress-docker-images
       - image: cypress/base:14
         environment:
