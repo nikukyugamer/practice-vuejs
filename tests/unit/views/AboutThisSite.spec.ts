@@ -3,49 +3,60 @@ import { shallowMount } from "@vue/test-utils";
 import AboutThisSite from "@/views/AboutThisSite.vue";
 
 jest.mock("axios");
+
 const mockedAxios = axios as jest.Mocked<typeof axios>;
+// TODO: Unexpected any. Specify a different type.eslint@typescript-eslint/no-explicit-any
+let successUserFetchMockedAxios, failUserFetchMockedAxios: any;
 
-const successUserFetchMockedAxios = () => {
-  mockedAxios.get.mockResolvedValue({
-    data: [
-      {
-        id: 1,
-        name: "Leanne Graham",
-        username: "Bret",
-        email: "Sincere@april.biz",
-        address: {
-          street: "Kulas Light",
-          suite: "Apt. 556",
-          city: "Gwenborough",
-          zipcode: "92998-3874",
-          geo: {
-            lat: "-37.3159",
-            lng: "81.1496",
-          },
-        },
-        phone: "1-770-736-8031 x56442",
-        website: "hildegard.org",
-        company: {
-          name: "Romaguera-Crona",
-          catchPhrase: "Multi-layered client-server neural-net",
-          bs: "harness real-time e-markets",
-        },
+const mockUserData = [
+  {
+    id: 1,
+    name: "Leanne Graham",
+    username: "Bret",
+    email: "Sincere@april.biz",
+    address: {
+      street: "Kulas Light",
+      suite: "Apt. 556",
+      city: "Gwenborough",
+      zipcode: "92998-3874",
+      geo: {
+        lat: "-37.3159",
+        lng: "81.1496",
       },
-    ],
-  });
-};
-
-const failUserFetchMockedAxios = () => {
-  mockedAxios.get.mockRejectedValue({
-    data: "ERROR: Fetch User data",
-  });
-};
-
-beforeEach(() => {
-  successUserFetchMockedAxios();
-});
+    },
+    phone: "1-770-736-8031 x56442",
+    website: "hildegard.org",
+    company: {
+      name: "Romaguera-Crona",
+      catchPhrase: "Multi-layered client-server neural-net",
+      bs: "harness real-time e-markets",
+    },
+  },
+];
 
 describe("AboutThisSite.vue", () => {
+  beforeEach(() => {
+    successUserFetchMockedAxios = () => {
+      mockedAxios.get.mockResolvedValue({
+        data: mockUserData,
+      });
+    };
+
+    failUserFetchMockedAxios = () => {
+      mockedAxios.get.mockRejectedValue({
+        data: "ERROR: Fetch User data",
+      });
+    };
+
+    // 設定で jest.clearAllMocks() を使う方法もある
+    // cf. https://jestjs.io/ja/docs/es6-class-mocks
+    // mockReset() メソッドもある
+    // spyOn は？
+    // https://qiita.com/yamagen0915/items/da885b3fa5cb825ccca9
+    mockedAxios.get.mockClear();
+    successUserFetchMockedAxios();
+  });
+
   it("mounted() で axios の結果が期待どおりであること", (done) => {
     const wrapper = shallowMount(AboutThisSite);
 
@@ -55,7 +66,6 @@ describe("AboutThisSite.vue", () => {
     // $nextTick だとエラーになる
     // https://zenn.dev/fuku710/articles/2b0b66a3283f7e
     setTimeout(() => {
-      // expect(mockedAxios.get).toHaveBeenCalled();
       expect(wrapper.text()).toMatch("Leanne Graham");
       expect(wrapper.text()).toMatch("Sincere@april.biz");
       expect(wrapper.text()).not.toMatch("データの受信に失敗しました。");
@@ -65,6 +75,7 @@ describe("AboutThisSite.vue", () => {
   });
 
   it("2つのボタンをクリックしたときに期待通りの動作をすること", async () => {
+    expect(mockedAxios.get).toHaveBeenCalledTimes(0);
     const wrapper = shallowMount(AboutThisSite);
 
     expect(wrapper.text()).toMatch("This is an about page");
