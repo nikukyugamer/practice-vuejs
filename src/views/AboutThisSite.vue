@@ -11,9 +11,23 @@
       </button>
     </p>
 
-    <div v-for="user in users" v-bind:key="user.id">
-      <h2>{{ user.name }}</h2>
-      <p>{{ user.email }}</p>
+    <div>
+      <span>{{ fetchUsersErrorMessage }}</span>
+
+      <div v-for="user in users" v-bind:key="user.id">
+        <h2>{{ user.name }}</h2>
+        <p>{{ user.email }}</p>
+      </div>
+    </div>
+
+    <div class="button">
+      <button data-testid="sample-message-button" @click="toggleSampleMessage">
+        toggleSampleMessage
+      </button>
+    </div>
+
+    <div data-testid="sample-message">
+      {{ sampleMessage }}
     </div>
   </div>
 </template>
@@ -28,15 +42,27 @@ export default {
   },
   data() {
     return {
+      sampleMessage: "",
       users: [],
+      fetchUsersErrorMessage: "",
     };
   },
   methods: {
+    toggleSampleMessage() {
+      if (this.sampleMessage === "") {
+        this.sampleMessage = "Hello, AboutThisSiteWorld!";
+      } else {
+        this.sampleMessage = "";
+      }
+    },
     fetchUsers() {
       axios
         .get("https://jsonplaceholder.typicode.com/users")
         .then((response) => {
           this.users = response.data;
+        })
+        .catch(() => {
+          this.fetchUsersErrorMessage = "データの受信に失敗しました。";
         });
     },
     removeUsers() {
