@@ -1,6 +1,5 @@
-import { defineNuxtConfig } from 'nuxt'
+import { defineNuxtConfig } from "nuxt/config";
 
-// https://v3.nuxtjs.org/api/configuration/nuxt.config
 export default defineNuxtConfig({
-
-})
+	// TODO: 必要に応じてなにか書く
+});
