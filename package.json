@@ -1,6 +1,6 @@
 {
 	"devDependencies": {
-		"nuxt": "~3"
+		"nuxt": "3.16.1"
 	},
 	"private": true,
 	"scripts": {
