@@ -1,0 +1,61 @@
+# Actions の All workflows の一覧に表示される名前
+name: Vue.js の練習場
+
+on:
+  push:
+    branches:
+      - '**'
+    tags-ignore:
+      - 'v*.*.*'
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+defaults:
+  run:
+    shell: bash
+
+env:
+  LANG: ja_JP.UTF-8
+  RUBY_YJIT_ENABLE: 1
+  TZ: Asia/Tokyo
+
+# $ npx @pkgdeps/update-github-actions-permissions ".github/workflows/*.{yaml,yml}"
+permissions:
+  contents: read
+
+jobs:
+  practice-vuejs:
+    name: Vue.js 練習場
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - name: （デバッグ用）Payload (GITHUB_EVENT_PATH) を確認する
+        run: |
+          cat $GITHUB_EVENT_PATH
+      - name: （デバッグ用）inputs と secrets と github と env を確認する
+        run: |
+          echo '${{ toJson(inputs) }}'
+          echo '${{ toJson(secrets) }}'
+          echo '${{ toJson(github) }}'
+          echo '${{ toJson(env) }}'
+      - name: $ git clone する
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      - name: pnpm のセットアップを行う
+        uses: pnpm/action-setup@a7487c7e89a18df4991f7f222e4898a00d66ddda # v4.1.0
+        with:
+          version: 10.7.0
+      - name: Node.js のセットアップを行う
+        uses: actions/setup-node@cdca7365b2dadb8aad0a33bc7601856ffabcc48e # v4.3.0
+        with:
+          node-version-file: '.node-version'
+          cache: pnpm
+          cache-dependency-path: pnpm-lock.yaml
+      - name: $ pnpm install する
+        run: pnpm install
+      - name: Biome で Lint および Format をチェックする
+        run: pnpm check .
+      - name: $ pnpm build が通るかチェックする
+        run: pnpm build
