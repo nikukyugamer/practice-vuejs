@@ -1,5 +1,5 @@
-import { defineNuxtConfig } from "nuxt/config";
+import { defineNuxtConfig } from 'nuxt/config'
 
 export default defineNuxtConfig({
-	// TODO: 必要に応じてなにか書く
-});
+  // TODO: 必要に応じてなにか書く
+})
