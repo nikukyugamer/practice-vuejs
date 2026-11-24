@@ -1,7 +1,7 @@
 {
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
-    "nuxt": "4.6.4"
+    "nuxt": "4.7.0"
   },
   "private": true,
   "scripts": {
